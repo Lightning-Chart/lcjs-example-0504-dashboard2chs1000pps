@@ -1,4 +1,4 @@
-/**
+/*
  * LightningChartJS example that showcases different directions of progressivity and using custom axes.
  */
 // Import LightningChartJS
