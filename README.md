@@ -24,12 +24,12 @@ This example shows different progressive data-patterns, scrolling strategies, cu
 
 ## API Links
 
-* Dashboard: [Dashboard]
-* XY cartesian chart: [ChartXY]
-* Axis: [Axis]
-* Scroll strategies: [AxisScrollStrategies]
-* Progressive line series: [ProgressiveLineSeries]
-* Data patterns: [DataPatterns]
+* [Dashboard]
+* [XY cartesian chart]
+* [Axis]
+* [Scroll strategies]
+* [Progressive line series]
+* [Data patterns]
 
 
 ## Support
@@ -53,10 +53,10 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[Dashboard]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/dashboard.html
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
-[Axis]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/axis.html
-[AxisScrollStrategies]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#axisscrollstrategies
-[ProgressiveLineSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/progressivelineseries.html
-[DataPatterns]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#datapatterns
+[Dashboard]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/dashboard.html
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/chartxy.html
+[Axis]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/axis.html
+[Scroll strategies]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#axisscrollstrategies
+[Progressive line series]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/progressivelineseries.html
+[Data patterns]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#datapatterns
 

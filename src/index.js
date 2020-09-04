@@ -8,7 +8,8 @@ const lcjs = require('@arction/lcjs')
 const {
     lightningChart,
     AxisScrollStrategies,
-    DataPatterns
+    DataPatterns,
+    Themes
 } = lcjs
 
 // Import data-generator from 'xydata'-library.
@@ -20,6 +21,7 @@ const viewRange = Math.PI * 2 * 10
 
 // Create Dashboard.
 const grid = lightningChart().Dashboard({
+    // theme: Themes.dark 
     numberOfRows: 1,
     numberOfColumns: 2
 })
