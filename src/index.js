@@ -8,7 +8,6 @@ const lcjs = require('@arction/lcjs')
 const {
     lightningChart,
     AxisScrollStrategies,
-    DataPatterns,
     Themes
 } = lcjs
 
@@ -47,8 +46,18 @@ chart1.getDefaultAxisY()
     .setInterval(viewRange, 0)
     .setScrollStrategy(AxisScrollStrategies.regressive)
 const series1 = chart1.addLineSeries({
-    dataPattern: DataPatterns.verticalRegressive
+    dataPattern: {
+        // pattern: 'RegressiveY' => Each consecutive data point has decreased Y coordinate.
+        pattern: 'RegressiveY',
+        // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
+        regularProgressiveStep: true,
+    }
 })
+    // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
+    // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
+    .setMaxPointCount(10000)
+    // Point to nearest Y data point with auto cursor.
+    .setCursorSolveBasis('nearest-y')
 
 // Second, a vertically progressive series with custom axis.
 chart2.setTitle('Vertical progressive')
@@ -59,8 +68,19 @@ const customAxisY = chart2.addAxisY(true)
 
 const series2 = chart2.addLineSeries({
     yAxis: customAxisY,
-    dataPattern: DataPatterns.verticalProgressive
+    dataPattern: {
+        // pattern: 'ProgressiveY' => Each consecutive data point has increased Y coordinate.
+        pattern: 'ProgressiveY',
+        // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
+        regularProgressiveStep: true,
+    }
 })
+    // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
+    // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
+    .setMaxPointCount(10000)
+    // Point to nearest Y data point with auto cursor.
+    .setCursorSolveBasis('nearest-y')
+
 // Dispose unused default Y-axis.
 chart2.getDefaultAxisY().dispose()
 
