@@ -20,7 +20,7 @@ const viewRange = Math.PI * 2 * 10
 
 // Create Dashboard.
 const grid = lightningChart().Dashboard({
-    // theme: Themes.dark 
+    // theme: Themes.darkGold 
     numberOfRows: 1,
     numberOfColumns: 2
 })

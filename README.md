@@ -53,10 +53,10 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[Dashboard]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/dashboard.html
-[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/chartxy.html
-[Axis]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/axis.html
-[Scroll strategies]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/globals.html#axisscrollstrategies
-[Line series]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/lineseries.html
-[Data patterns]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/interfaces/datapattern.html
+[Dashboard]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/dashboard.html
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/chartxy.html
+[Axis]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/axis.html
+[Scroll strategies]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/globals.html#axisscrollstrategies
+[Line series]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/lineseries.html
+[Data patterns]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/interfaces/datapattern.html
 
