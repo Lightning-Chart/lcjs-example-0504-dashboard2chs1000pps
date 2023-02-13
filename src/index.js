@@ -4,25 +4,22 @@
 // Import LightningChartJS
 const lcjs = require('@arction/lcjs')
 
+// Import xydata
+const xydata = require('@arction/xydata')
+
 // Extract required parts from LightningChartJS.
-const {
-    lightningChart,
-    AxisScrollStrategies,
-    Themes
-} = lcjs
+const { lightningChart, AxisScrollStrategies, Themes } = lcjs
 
 // Import data-generator from 'xydata'-library.
-const {
-    createProgressiveFunctionGenerator
-} = require('@arction/xydata')
+const { createProgressiveFunctionGenerator } = xydata
 
 const viewRange = Math.PI * 2 * 10
 
 // Create Dashboard.
 const grid = lightningChart().Dashboard({
-    // theme: Themes.darkGold 
+    // theme: Themes.darkGold
     numberOfRows: 1,
-    numberOfColumns: 2
+    numberOfColumns: 2,
 })
 
 // Create two XY-charts.
@@ -30,54 +27,55 @@ const chart1 = grid.createChartXY({
     columnIndex: 0,
     rowIndex: 0,
     columnSpan: 1,
-    rowSpan: 1
+    rowSpan: 1,
 })
 const chart2 = grid.createChartXY({
     columnIndex: 1,
     rowIndex: 0,
     columnSpan: 1,
-    rowSpan: 1
+    rowSpan: 1,
 })
 
 // Create progressive series with different directions and configure Y-axes suitably.
 // First, a vertically regressive series.
 chart1.setTitle('Vertical regressive')
-chart1.getDefaultAxisY()
-    .setInterval(viewRange, 0)
-    .setScrollStrategy(AxisScrollStrategies.regressive)
-const series1 = chart1.addLineSeries({
-    dataPattern: {
-        // pattern: 'RegressiveY' => Each consecutive data point has decreased Y coordinate.
-        pattern: 'RegressiveY',
-        // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
-        regularProgressiveStep: true,
-    }
-})
+chart1.getDefaultAxisY().setInterval({ start: viewRange, end: 0, stopAxisAfter: false }).setScrollStrategy(AxisScrollStrategies.regressive)
+const series1 = chart1
+    .addLineSeries({
+        dataPattern: {
+            // pattern: 'RegressiveY' => Each consecutive data point has decreased Y coordinate.
+            pattern: 'RegressiveY',
+            // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
+            regularProgressiveStep: true,
+        },
+    })
     // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
     // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
-    .setMaxPointCount(10000)
+    .setDataCleaning({ minDataPointCount: 10000 })
     // Point to nearest Y data point with auto cursor.
     .setCursorSolveBasis('nearest-y')
 
 // Second, a vertically progressive series with custom axis.
 chart2.setTitle('Vertical progressive')
 // Add new axis to 'right' side of chart.
-const customAxisY = chart2.addAxisY(true)
-    .setInterval(-viewRange, 0)
+const customAxisY = chart2
+    .addAxisY(true)
+    .setInterval({ start: -viewRange, end: 0, stopAxisAfter: false })
     .setScrollStrategy(AxisScrollStrategies.progressive)
 
-const series2 = chart2.addLineSeries({
-    yAxis: customAxisY,
-    dataPattern: {
-        // pattern: 'ProgressiveY' => Each consecutive data point has increased Y coordinate.
-        pattern: 'ProgressiveY',
-        // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
-        regularProgressiveStep: true,
-    }
-})
+const series2 = chart2
+    .addLineSeries({
+        yAxis: customAxisY,
+        dataPattern: {
+            // pattern: 'ProgressiveY' => Each consecutive data point has increased Y coordinate.
+            pattern: 'ProgressiveY',
+            // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
+            regularProgressiveStep: true,
+        },
+    })
     // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
     // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
-    .setMaxPointCount(10000)
+    .setDataCleaning({ minDataPointCount: 10000 })
     // Point to nearest Y data point with auto cursor.
     .setCursorSolveBasis('nearest-y')
 
@@ -101,7 +99,7 @@ createProgressiveFunctionGenerator()
     })
 
 createProgressiveFunctionGenerator()
-    .setSamplingFunction((x) => Math.sin(x * .5) + Math.sin(x) + Math.cos(x * 1.5) + Math.cos(x * 0.25))
+    .setSamplingFunction((x) => Math.sin(x * 0.5) + Math.sin(x) + Math.cos(x * 1.5) + Math.cos(x * 0.25))
     .setEnd(Math.PI * 100)
     .setStep(0.015)
     .generate()
