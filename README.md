@@ -53,10 +53,10 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[Dashboard]: https://lightningchart.com/js-charts/api-documentation/v4.2.0/classes/Dashboard.html
-[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v4.2.0/classes/ChartXY.html
-[Axis]: https://lightningchart.com/js-charts/api-documentation/v4.2.0/classes/Axis.html
-[Scroll strategies]: https://lightningchart.com/js-charts/api-documentation/v4.2.0/variables/AxisScrollStrategies.html
-[Line series]: https://lightningchart.com/js-charts/api-documentation/v4.2.0/classes/LineSeries.html
-[Data patterns]: https://lightningchart.com/js-charts/api-documentation/v4.2.0/interfaces/DataPattern.html
+[Dashboard]: https://lightningchart.com/js-charts/api-documentation/v5.0.1/classes/Dashboard.html
+[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v5.0.1/classes/ChartXY.html
+[Axis]: https://lightningchart.com/js-charts/api-documentation/v5.0.1/classes/Axis.html
+[Scroll strategies]: https://lightningchart.com/js-charts/api-documentation/v5.0.1/variables/AxisScrollStrategies.html
+[Line series]: https://lightningchart.com/js-charts/api-documentation/v5.0.1/classes/LineSeries.html
+[Data patterns]: https://lightningchart.com/js-charts/api-documentation/v5.0.1/interfaces/DataPattern.html
 
