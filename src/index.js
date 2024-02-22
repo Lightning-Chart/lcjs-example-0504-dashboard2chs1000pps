@@ -61,7 +61,7 @@ chart2.setTitle('Vertical progressive')
 // Add new axis to 'right' side of chart.
 const customAxisY = chart2
     .addAxisY(true)
-    .setInterval({ start: -viewRange, end: 0, stopAxisAfter: false })
+    .setDefaultInterval((state) => ({ end: state.dataMax, start: (state.dataMax ?? 0) - viewRange, stopAxisAfter: false }))
     .setScrollStrategy(AxisScrollStrategies.progressive)
 
 const series2 = chart2
