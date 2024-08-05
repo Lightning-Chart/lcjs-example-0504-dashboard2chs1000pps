@@ -2,10 +2,10 @@
  * LightningChartJS example that showcases different directions of progressivity and using custom axes.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Import xydata
-const xydata = require('@arction/xydata')
+const xydata = require('@lightningchart/xydata')
 
 // Extract required parts from LightningChartJS.
 const { lightningChart, AxisScrollStrategies, Themes } = lcjs
@@ -55,8 +55,6 @@ const series1 = chart1
     // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
     // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
     .setDataCleaning({ minDataPointCount: 10000 })
-    // Point to nearest Y data point with auto cursor.
-    .setCursorSolveBasis('nearest-y')
 
 // Second, a vertically progressive series with custom axis.
 chart2.setTitle('Vertical progressive')
@@ -79,8 +77,6 @@ const series2 = chart2
     // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
     // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
     .setDataCleaning({ minDataPointCount: 10000 })
-    // Point to nearest Y data point with auto cursor.
-    .setCursorSolveBasis('nearest-y')
 
 // Dispose unused default Y-axis.
 chart2.getDefaultAxisY().dispose()
