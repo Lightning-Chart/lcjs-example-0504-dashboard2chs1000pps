@@ -8,7 +8,7 @@ const lcjs = require('@lightningchart/lcjs')
 const xydata = require('@lightningchart/xydata')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, AxisScrollStrategies, Themes } = lcjs
+const { lightningChart, AxisScrollStrategies, emptyFill, Themes } = lcjs
 
 // Import data-generator from 'xydata'-library.
 const { createProgressiveFunctionGenerator } = xydata
@@ -44,39 +44,27 @@ const chart2 = grid.createChartXY({
 chart1.setTitle('Vertical regressive')
 chart1.getDefaultAxisY().setInterval({ start: viewRange, end: 0, stopAxisAfter: false }).setScrollStrategy(AxisScrollStrategies.regressive)
 const series1 = chart1
-    .addLineSeries({
-        dataPattern: {
-            // pattern: 'RegressiveY' => Each consecutive data point has decreased Y coordinate.
-            pattern: 'RegressiveY',
-            // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
-            regularProgressiveStep: true,
-        },
+    .addPointLineAreaSeries({
+        dataPattern: 'RegressiveY',
     })
-    // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
-    // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
-    .setDataCleaning({ minDataPointCount: 10000 })
+    .setMaxSampleCount(10_000)
+    .setAreaFillStyle(emptyFill)
 
 // Second, a vertically progressive series with custom axis.
 chart2.setTitle('Vertical progressive')
 // Add new axis to 'right' side of chart.
 const customAxisY = chart2
-    .addAxisY(true)
+    .addAxisY({ opposite: true })
     .setDefaultInterval((state) => ({ end: state.dataMax, start: (state.dataMax ?? 0) - viewRange, stopAxisAfter: false }))
     .setScrollStrategy(AxisScrollStrategies.progressive)
 
 const series2 = chart2
-    .addLineSeries({
-        yAxis: customAxisY,
-        dataPattern: {
-            // pattern: 'ProgressiveY' => Each consecutive data point has increased Y coordinate.
-            pattern: 'ProgressiveY',
-            // regularProgressiveStep: true => The Y step between each consecutive data point is regular (for example, always `1.0`).
-            regularProgressiveStep: true,
-        },
+    .addPointLineAreaSeries({
+        dataPattern: 'ProgressiveY',
+        axisY: customAxisY,
     })
-    // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
-    // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
-    .setDataCleaning({ minDataPointCount: 10000 })
+    .setMaxSampleCount(10_000)
+    .setAreaFillStyle(emptyFill)
 
 // Dispose unused default Y-axis.
 chart2.getDefaultAxisY().dispose()
