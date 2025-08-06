@@ -31,12 +31,16 @@ const chart1 = grid.createChartXY({
     rowIndex: 0,
     columnSpan: 1,
     rowSpan: 1,
+    legend: { visible: false },
+
 })
 const chart2 = grid.createChartXY({
     columnIndex: 1,
     rowIndex: 0,
     columnSpan: 1,
     rowSpan: 1,
+    legend: { visible: false },
+
 })
 
 // Create progressive series with different directions and configure Y-axes suitably.
@@ -44,11 +48,13 @@ const chart2 = grid.createChartXY({
 chart1.setTitle('Vertical regressive')
 chart1.getDefaultAxisY().setInterval({ start: viewRange, end: 0, stopAxisAfter: false }).setScrollStrategy(AxisScrollStrategies.regressive)
 const series1 = chart1
-    .addPointLineAreaSeries({
-        dataPattern: 'RegressiveY',
+    .addLineSeries({
+        schema: {
+            x: { pattern: null },
+            y: { pattern: 'regressive' },
+        },
     })
     .setMaxSampleCount(10_000)
-    .setAreaFillStyle(emptyFill)
 
 // Second, a vertically progressive series with custom axis.
 chart2.setTitle('Vertical progressive')
@@ -56,15 +62,17 @@ chart2.setTitle('Vertical progressive')
 const customAxisY = chart2
     .addAxisY({ opposite: true })
     .setDefaultInterval((state) => ({ end: state.dataMax, start: (state.dataMax ?? 0) - viewRange, stopAxisAfter: false }))
-    .setScrollStrategy(AxisScrollStrategies.progressive)
+    .setScrollStrategy(AxisScrollStrategies.scrolling)
 
 const series2 = chart2
-    .addPointLineAreaSeries({
-        dataPattern: 'ProgressiveY',
+    .addLineSeries({
+        schema: {
+            x: { pattern: null },
+            y: { pattern: 'progressive' },
+        },
         axisY: customAxisY,
     })
     .setMaxSampleCount(10_000)
-    .setAreaFillStyle(emptyFill)
 
 // Dispose unused default Y-axis.
 chart2.getDefaultAxisY().dispose()
@@ -82,7 +90,7 @@ createProgressiveFunctionGenerator()
     .toStream()
     .forEach((point) => {
         // Transform point to suit series.
-        series1.add({ x: point.y, y: -point.x })
+        series1.appendSample({ x: point.y, y: -point.x })
     })
 
 createProgressiveFunctionGenerator()
@@ -97,5 +105,5 @@ createProgressiveFunctionGenerator()
     .toStream()
     .forEach((point) => {
         // Transform point to suit series.
-        series2.add({ x: point.y, y: point.x })
+        series2.appendSample({ x: point.y, y: point.x })
     })
