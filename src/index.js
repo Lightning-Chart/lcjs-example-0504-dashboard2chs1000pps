@@ -16,7 +16,7 @@ const { createProgressiveFunctionGenerator } = xydata
 const viewRange = Math.PI * 2 * 10
 
 // Create Dashboard.
-// NOTE: Using `Dashboard` is no longer recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/basic-topics/grouping-charts/
+// NOTE: Using `Dashboard` is no longer recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/more-guides/grouping-charts/
 const grid = lightningChart({
             resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
         }).Dashboard({
@@ -46,7 +46,7 @@ const chart2 = grid.createChartXY({
 // Create progressive series with different directions and configure Y-axes suitably.
 // First, a vertically regressive series.
 chart1.setTitle('Vertical regressive')
-chart1.getDefaultAxisY().setInterval({ start: viewRange, end: 0, stopAxisAfter: false }).setScrollStrategy(AxisScrollStrategies.regressive)
+chart1.getDefaultAxisY().setInterval({ start: viewRange, end: 0, stopAxisAfter: false }).setScrollStrategy(AxisScrollStrategies.scrolling({ progressive: false }))
 const series1 = chart1
     .addLineSeries({
         schema: {
